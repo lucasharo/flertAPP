@@ -1,0 +1,74 @@
+<ion-view hide-nav-bar="true" id="page-perfil">
+	<div user-profile-header class="animated bg-header-gradient">
+		<figure class="cap-top">
+			<img width="100%" ng-src="{{usuarioPerfil.img.src}}" preload-image default-image="img/no-image.png"/>
+			<figcaption class="bg-header-gradient no-padder" style="top: 0; height: 44px;">				
+				<div class="header-bar-transparent no-padder" horizontal layout justified>
+					<button class="button button-clear" nav-direction="back" ng-click="goBack()">
+						<i class="icon ion-arrow-left-c color-white"></i>
+					</button>
+				</div>
+			</figcaption>
+			<figcaption style="font-size: 24px">
+				{{usuarioPerfil.nome}}, 24
+				<i class="icon ion-edit float-right color-white no-padder" ng-click="openEditProfileModal()"></i>
+			</figcaption>
+		</figure>
+          
+    </div>
+    <div user-profile-sub-header class="animated">
+		<div class="row no-padder" style="height: 44px">
+			<div class="col col-20 no-padder">
+					<button class="button button-clear" nav-direction="back" ng-click="goBack()">
+						<i class="icon ion-arrow-left-c royal"></i>
+					</button>
+			</div>
+			<div class="col center color-light-grey" style="font-size: 19px; top: 12px; padding: 14px;">
+				{{usuarioPerfil.nome}}
+			</div>
+			<div class="col col-20 no-padder">
+				<button class="button button-clear float-right" style="font-size: 28px !important; padding-right: 15px !important" ng-click="openEditProfileModal()">
+					<i class="ion-edit royal"></i>
+				</button>
+			</div>
+		</div>
+    </div>
+	<ion-content class="bg-grey" ion-parallax-profile delegate-handle="profileScroll" has-bounce="false">
+		<div id="content-perfil" class="wrapper b-b b-light text-muted text-md">
+			<div class="b-b b-light">
+			  <div class="text-muted">
+			  <br/>
+				<p class="color-light-grey">{{usuarioPerfil.descricao}}</p>
+			  </div>
+			</div>
+			<div class="b-b b-light text-muted text-md">
+				<div class="m-b-md font-bold text-u-c royal padding-top-15">Fotos <span class="rounded-matches text-center rounded color-white royal-bg">{{fotos.length}}</span></div>
+			
+				<div class="row no-padder" ng-repeat="foto in fotos" ng-if="$index % 3 === 0">
+					<div class="col col-33" ng-if="$index < fotos.length" on-tap="abrirImagemModal($index)" on-hold="removeFoto($index)">
+						<img preload-image ng-src="{{fotos[$index].thumb}}" default-image="img/no-image.png" class="w-full r-3x" alt="">
+					</div>
+					<div class="col col-33" ng-if="$index + 1 < fotos.length" on-tap="abrirImagemModal($index + 1)" on-hold="removeFoto($index + 1)">
+						<img preload-image ng-src="{{fotos[$index + 1].thumb}}" default-image="img/no-image.png" class="w-full r-3x" alt="">
+					</div>
+					<div class="col col-33" ng-if="$index + 2 < fotos.length" on-tap="abrirImagemModal($index + 2)" on-hold="removeFoto($index + 2)">
+						<img preload-image ng-src="{{fotos[$index + 2].thumb}}" default-image="img/no-image.png" class="w-full r-3x" alt="">
+					</div>
+				</div>
+			</div>
+
+			<div class="text-muted text-md">
+			  <div class="m-b-md font-bold text-u-c royal padding-top-15">Interesses</div>
+			  <span class="button button-outline button-small button-stable text-c m-r-sm m-b-sm" ng-show="usuarioPerfil.filtro.estilo.eletronica">Eletronica</span>
+			  <span class="button button-outline button-small button-stable text-c m-r-sm m-b-sm" ng-show="usuarioPerfil.filtro.estilo.funk">Funk</span>
+			  <span class="button button-outline button-small button-stable text-c m-r-sm m-b-sm" ng-show="usuarioPerfil.filtro.estilo.rap">Rap</span>
+			  <span class="button button-outline button-small button-stable text-c m-r-sm m-b-sm" ng-show="usuarioPerfil.filtro.estilo.rock">Rock</span>
+			  <span class="button button-outline button-small button-stable text-c m-r-sm m-b-sm" ng-show="usuarioPerfil.filtro.estilo.samba">Samba</span>
+			  <span class="button button-outline button-small button-stable text-c m-r-sm m-b-sm" ng-show="usuarioPerfil.filtro.estilo.sertaneja">Sertanejo</span>
+			</div>
+			<p ng-repeat="val in [0,1,2,3]" class="card padding">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+		</div>
+  </ion-content>  
+</ion-view>

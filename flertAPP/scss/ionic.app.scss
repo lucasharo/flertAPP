@@ -15,9 +15,19 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+$calm:                            #2cb3c9 !default;
+$balanced:                        #57C581 !default;
+$energized:                       #F7C755 !default;
+$assertive:                       #E13052 !default;
+$royal:                           #886aea !default;
+$positive:                        #387ef5 !default;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
-@import "www/lib/ionic/scss/ionic.scss";
-
+@import "www/lib/ionic/scss/ionic";
+@import "helper";
+@import "chat";
+@import "giphy";
+@import "tinder";

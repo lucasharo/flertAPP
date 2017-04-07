@@ -93,6 +93,9 @@ $button-bar-button-height:        32px !default;
 $button-bar-button-padding:       8px !default;
 $button-bar-button-icon-size:     20px !default;
 
+$button-default-border:           transparent !default;
+$button-default-active-border:    null !default;
+
 $button-light-bg:                 $light !default;
 $button-light-text:               #444 !default;
 $button-light-border:             #ddd !default;
@@ -607,10 +610,10 @@ $grid-responsive-lg-break:        1023px !default; // smaller than landscape tab
 $sheet-margin:                    8px !default;
 $sheet-border-radius:             4px !default;
 
-$sheet-options-bg-color:          #f1f2f3 !default;
-$sheet-options-bg-active-color:   #e4e5e7 !default;
+$sheet-options-bg-color:          #333 !default;
+$sheet-options-bg-active-color:   #585858 !default;
 $sheet-options-text-color:        #007aff !default;
-$sheet-options-border-color:      #d1d3d6 !default;
+$sheet-options-border-color:      #585858 !default;
 
 
 // Popups

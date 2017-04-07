@@ -86,7 +86,7 @@
 .action-sheet-group {
   margin-bottom: $sheet-margin;
   border-radius: $sheet-border-radius;
-  background-color: #fff;
+  background-color: #333;
   overflow: hidden;
 
   .button {
@@ -145,14 +145,14 @@
 
     .button.active,
     .button.activated {
-      background: #e8e8e8;
+      background: $sheet-options-bg-active-color;
     }
   }
 
   .action-sheet-group {
     margin: 0;
     border-radius: 0;
-    background-color: #fafafa;
+    background-color: #333;
   }
 
   .action-sheet-cancel {

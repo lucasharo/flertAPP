@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugins-imagecropresizer" version="1.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>ImageCropResizer</name>
+    <description>A Cordova Plugin to crop/resize the image</description>
+    <license>MIT</license>
+    <keywords>cordova,image,crop,resize</keywords>
+    <js-module name="ImageCropResizer" src="www/resizer.js">
+        <clobbers target="ImageCropResizer" />
+    </js-module>
+	<platform name="android">
+		<config-file target="config.xml" parent="/*">
+			<feature name="ImageCropResizer">
+				<param name="android-package" value="org.cordova.plugin.ImageCropResizer" />
+			</feature>
+		</config-file>
+    <source-file src="src/android/org/cordova/plugin/ImageCropResizer.java" target-dir="src/org/cordova/plugin" />
+	</platform>
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="ImageCropResizer">
+        <param name="ios-package" value="ImageCropResizer" />
+      </feature>
+    </config-file>
+    <header-file src="src/ios/ImageCropResizer.h" />
+    <source-file src="src/ios/ImageCropResizer.m" />
+    <header-file src="src/ios/NSData+Base64.h" />
+    <source-file src="src/ios/NSData+Base64.m" />        
+  </platform>
+</plugin>

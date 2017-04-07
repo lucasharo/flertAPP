@@ -1,0 +1,44 @@
+<ion-modal-view class="bg-black-opacity">
+  <ion-content class="bg-black-opacity" ion-sticky ion-sticky-class="dark">
+    <div class="text-center has-curved-bg m-t-xl">
+      <div class="pos-abt left top right bottom text-center top-of-curved">
+        <img src="img/adam.jpg" alt="" class="thumb-md rounded b b-light b-2x">
+      </div>
+      <div class="curved"></div>
+    </div>
+
+    <div class="light-bg">
+      <div class="wrapper-sm text-center">
+        <div class="font-bold">Create a group to swipe with friends.</div>
+        <div class="text-sm text-muted">Choose at least 1 friend to continue</div>
+      </div>
+
+      <div class="list m-n">
+        <label class="item item-divider item-input light-bg">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" placeholder="Search for people and groups">
+        </label>
+      </div>
+
+      <div class="list">
+        <div class="item item-avatar item-narrow item-icon-right b-none" ng-repeat="p in friends" ng-click="selectFriend($index)">
+          <img ng-src="{{p.image}}" alt="">
+          <h2 class="title b-b b-light">{{p.name}}</h2>
+          <i class="icon ion-ios-circle-outline" ng-show="!p.isSelected"></i>
+          <i class="icon ion-ios-checkmark royal" ng-show="p.isSelected"></i>
+        </div>
+      </div>
+
+      <div class="wrapper text-center">
+        Don't see who you're looking for?
+        <button class="button button-royal button-outline button-block rounded">ADD FRIENDS</button>
+        <p class="text-muted text-xs">Your friends can invite you to swipe together. Go to settings to change these permissions.</p>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar class="bar-royal tabs">
+      <a class="tab-item" ng-click="closeAddFriendModal()">
+        CANCEL
+      </a>
+  </ion-footer-bar>
+</ion-modal-view>

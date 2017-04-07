@@ -1,0 +1,80 @@
+<ion-view id="page-evento">
+<ion-nav-buttons side="left">
+    <button class="button button-clear" nav-direction="back" ng-click="goBack()">
+      <i class="icon ion-arrow-left-c royal"></i>
+    </button>
+  </ion-nav-buttons>
+	<ion-nav-title>
+    <div class="thumb-xs rounded color-light-grey"  ng-click="goToPerfil(usuarioChat.id)">
+      {{evento.titulo}}
+    </div>
+  </ion-nav-title>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="showUserOptions()">
+      <i class="icon ion-more royal"></i>
+    </button>
+  </ion-nav-buttons>
+	<ion-content class="bg-grey">
+		<img width="100%" ng-src="{{evento.img.src}}" preload-image default-image="img/no-image.png"/>
+		<div class="wrapper b-b b-light text-muted text-md padding-bottom-60">
+			<div class="b-b b-light">
+			<div class="m-b-md font-bold text-u-c royal padding-top-15">Dia</div>
+			  <div class="text-muted">
+				<p class="color-light-grey"><span style="text-transform: capitalize">{{evento.dia | date: 'EEE, d'}}</span> de {{evento.dia | date: 'LLLL'}} às {{evento.hora | date: 'H:mm'}}</p>
+			  </div>
+			</div>
+			<div class="b-b b-light">
+			<div class="m-b-md font-bold text-u-c royal padding-top-15">Local</div>
+			  <div class="text-muted">
+				<p class="color-light-grey">Rua José Bruno da Costa, 86</p>
+			  </div>
+			</div>
+			<div class="b-b b-light">
+			<div class="m-b-md font-bold text-u-c royal padding-top-15">Descrição</div>
+			  <div class="text-muted">
+				<p class="color-light-grey">{{evento.desc}}</p>
+			  </div>
+			</div>
+			<div class="b-b b-light padding-bottom-15 padding-top-15">
+				<figure class="r-3x" ng-click="goToEmpresa(empresa.$id)">
+					<img class="w-full" ng-src="{{empresa.img.src}}" preload-image default-image="img/no-image.png"/>
+					<figcaption class="bg-titulo-baladas">
+						{{empresa.nome}} <span class="float-right">{{empresa.qtdComentarios}} <i class="ion-chatbox-working"></i> {{empresa.qtdUsuarios}} <i class="ion-person-stalker"></i></span>
+					</figcaption>
+				</figure>
+				
+				<ion-scroll direction="x" class="scroll-horizontal padding-top-15">
+					<div class="row no-padder">
+						<div ng-repeat="eventoSlide in ultimosEventos" ng-if="eventoSlide.$id != evento.$id" class="col col-33" ui-sref="home.evento({empresaId: empresa.$id, eventoId: eventoSlide.$id})" on-hold="removeFoto($index)">
+							<img preload-image ng-src="{{eventoSlide.img.thumb}}" default-image="img/no-image.png" class="w-full r-3x" alt="">						
+						</div>
+					</div>
+				</ion-scroll>
+			</div>
+			
+		<!--<div class="wrapper b-b b-light text-muted text-md">
+		  <div class="font-bold m-b-sm text-c">55 Friends For Common Connections</div>
+		  <div>
+			We compare your Facebook friends with those of your matches to display any common connections
+		  </div>
+		</div>
+		<button class="button button-block button-positive" ng-click="addEvento(empresa.$id)">Log In with Facebook</button>-->
+
+		
+			<div class="m-b-md font-bold text-u-c royal padding-top-15">Fotos do evento <span class="rounded-matches text-center rounded color-white royal-bg">{{fotos.length}}</span></div>
+		
+			<div class="row no-padder" ng-repeat="foto in fotos" ng-if="$index % 3 === 0">
+				<div class="col col-33" ng-if="$index < fotos.length" on-tap="abrirImagemModal($index)" on-hold="removeFoto($index)">
+					<img preload-image ng-src="{{fotos[$index].thumb}}" default-image="img/no-image.png" class="w-full r-3x" alt="">
+				</div>
+				<div class="col col-33" ng-if="$index + 1 < fotos.length" on-tap="abrirImagemModal($index + 1)" on-hold="removeFoto($index + 1)">
+					<img preload-image ng-src="{{fotos[$index + 1].thumb}}" default-image="img/no-image.png" class="w-full r-3x" alt="">
+				</div>
+				<div class="col col-33" ng-if="$index + 2 < fotos.length" on-tap="abrirImagemModal($index + 2)" on-hold="removeFoto($index + 2)">
+					<img preload-image ng-src="{{fotos[$index + 2].thumb}}" default-image="img/no-image.png" class="w-full r-3x" alt="">
+				</div>
+			</div>
+	</div>
+  </ion-content>
+  <i class="button icon ion-image bg-colorful box-shadow light text-xl rounded circle-button" style="position: absolute; bottom: 30px; right: 30px; padding-top: 7px; color: #fff" ng-click="addFotosEvento()"></i>
+</ion-view>

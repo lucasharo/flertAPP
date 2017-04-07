@@ -1,0 +1,96 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Tinder Plus</h1>
+    <button class="button button-clear button-royal" ng-click="closeTinderplusModal()">Done</button>
+  </ion-header-bar>
+
+  <ion-content class="stable-bg">
+    <div class="m-t-sm m-b-sm">
+      <img src="img/tinder_plus_banner.png" class="w-full" alt="">
+      <div class="wrapper-lg text-center pos-abt top left w-full">
+        <div class="text-muted">POWER ON</div>
+        <button class="button button-royal rounded w">Get Tinder Plus</button>
+      </div>
+    </div>
+
+    <div class="list m-b-sm">
+      <div class="item item-avatar item-text-wrap b-none">
+        <img src="img/tinder_plus_icon_2.png" alt="">
+        <div class="font-bold">Skip The Line</div>
+        <p>Be the top profile in your area for 30 minutes to get more matches.</p>
+      </div>
+      <div class="item item-toggle item-text-wrap">
+        Tinder Boost
+        <div class="text-muted text-xs">Give me one free Boost every week</div>
+        <label class="toggle toggle-royal">
+          <input type="checkbox">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div class="list m-b-sm">
+      <div class="item item-avatar item-text-wrap b-none">
+        <img src="img/tinder_plus_icon_1.png" alt="">
+        <div class="font-bold">Unlimited Right Swipes</div>
+        <p>Swipe as much as you like.</p>
+      </div>
+      <div class="item item-toggle item-text-wrap">
+        Unlimited Likes
+        <div class="text-muted text-xs">Give me the ability to like as many people as I want</div>
+        <label class="toggle toggle-royal">
+          <input type="checkbox">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div class="list m-n">
+      <div class="item item-avatar item-text-wrap b-none">
+        <img src="img/tinder_plus_icon_3.png" alt="">
+        <div class="font-bold">Control Who You See</div>
+        <p>It's simple now to choose the type of people you want to see on Tinder.</p>
+      </div>
+    </div>
+    <div class="list m-b-sm" ng-init="recommendation = 0">
+      <div class="item item-text-wrap item-icon-right" ng-click="recommendation = 0">
+        <h2>Balanced Recommendations</h2>
+        <div class="text-xs text-muted">See the most relevant people to you (default setting)</div>
+        <i class="icon ion-checkmark-round royal" ng-show="recommendation == 0"></i>
+      </div>
+      <div class="item item-text-wrap item-icon-right" ng-click="recommendation = 1">
+        <h2>Only People I've Liked</h2>
+        <div class="text-xs text-muted">Only people I've right swiped will see me</div>
+        <i class="icon ion-checkmark-round royal" ng-show="recommendation == 1"></i>
+      </div>
+    </div>
+
+    <div class="list m-n">
+      <div class="item item-avatar item-text-wrap b-none">
+        <img src="img/tinder_plus_icon_3.png" alt="">
+        <div class="font-bold">Passport To Any Location</div>
+        <p>Match with people all around the world. Paris. Los Angeles. Sydney. Go!</p>
+      </div>
+    </div>
+    <div class="list m-b-sm">
+      <div class="item" horizontal layout center>
+        <div class="row no-padder">
+          <div class="col-40">
+            Location
+          </div>
+          <div class="col-60 text-right">
+            My Current Location
+            <div class="text-xs text-muted">Hanoi, Thành phố Hà Nội</div>
+          </div>
+        </div>
+        <span class="item-note m-l">
+          <i class="icon ion-chevron-right"></i>
+        </span>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

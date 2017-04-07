@@ -1,0 +1,398 @@
+@import animate_mixin
+
+$tinderRed: #886aea
+$colorfulStart: #886aea
+$colorfulEnd: #585858
+// #E23151
+
+@font-face
+  font-family: "Varela Round"
+  src: url('../fonts/VarelaRound-Regular.ttf' ) format('truetype')
+  font-weight: normal
+  font-style: normal
+
+body *
+  font-family: "Varela Round", "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif
+
+.bar-no-border
+  border: none
+  background-image: none !important
+
+.color-red-tinder
+  color: $tinderRed
+.bg-red-tinder
+  background-color: $tinderRed
+
+/* Explore */
+.card-actions
+  .card-action
+    border-radius: 999em
+    background-color: #F1F2F4
+    // padding: 8px
+    &.bigger-button
+      // padding: 10px
+      .button
+        width: 62px
+        height: 62px
+      .button-large
+        min-width: 62px
+        min-height: 62px
+  .button
+    width: 50px
+    height: 52px
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05)
+    text-align: center
+    font-size: 50px
+    transition: transform 200ms ease-in
+    .icon:before
+      font-size: 32px
+    &.zoom
+      transform: scale(1.15)
+      -webkit-transform: scale(1.15)
+  &.on-profile
+    position: fixed
+    bottom: 0
+    width: 100%
+.dot-notification
+  display: block
+  position: absolute
+  width: 12px
+  height: 12px
+  left: -3px
+  top: 10px
+  background-color: $tinderRed
+  border-radius: 50%
+  border: 2px solid #fff
+  &.on-avatar
+    left: inherit
+    right: -5px
+    top: 27px
+
+.tinder-toggle
+  width: 120px
+  margin: 6px auto 4px
+  height: 32px
+  position: relative
+  div
+    display: inline-block
+    width: 70px
+    height: 32px
+    position: absolute
+    border-radius: 999em
+    border: 2px solid #ddd
+    color: #777
+    z-index: 1
+    &.active
+      @extend .bg-colorful
+      border: none
+      width: 70px
+      height: 32px
+      z-index: 10
+    &:first-child
+      left: 0
+    &:nth-child(2)
+      right: 0
+    .icon
+      position: relative
+      top: -5px
+
+
+/* Tinder Cards */
+td-cards
+  display: block
+  position: relative
+
+$borderRadius: 8px
+$cardMargin: 10px
+.td-card
+  height: 100%
+td-card
+  position: absolute
+  left: $cardMargin
+  top: $cardMargin
+  right: $cardMargin
+  bottom: $cardMargin
+  border-radius: $borderRadius
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2)
+  overflow: hidden
+  .image
+    border-radius: $borderRadius $borderRadius 0 0
+  .caption
+    padding: 0 16px 8px
+  .card-tinder
+    border-radius: $borderRadius
+    position: relative
+    margin: 0
+    overflow: initial
+    height: 100%
+  .card-footer
+    border-radius: 0 0 $borderRadius $borderRadius
+  .div-img
+    background-size: cover
+    background-position: center center
+    // border-radius: $borderRadius $borderRadius 0 0
+  .group-grid
+    margin: -2px
+    .div-img
+      float: left
+      border: 2px solid #fff
+
+.yes-text, .no-text
+  position: absolute
+  text-align: center
+  opacity: 0
+  z-index: 999
+  letter-spacing: 0.2em
+  .icon
+    font-size: 24px
+.no-text
+  transform: rotate(15deg)
+  top: 54px
+  right: 16px
+.yes-text
+  transform: rotate(-15deg)
+  top: 54px
+  left: 16px
+
+.fade
+  -webkit-transition: 0.2s opacity linear
+  transition: 0.2s opacity linear
+  opacity: 0
+
+/* Tinder Pulse */
+.load
+  border-radius: 100px
+  position: relative
+  padding: 4px
+  @include animation('pulse 2s linear infinite')
+  img
+    display: block
+  &:after, &:before
+    display: inline-block
+    margin: auto
+    position: absolute
+    left: 4px
+    top: 4px
+    content: ""
+    width: 96px
+    height: 96px
+    border-radius: 100px
+    background-color: #fdc4c2
+    border: 2px solid #ff8289
+  &:after
+    z-index: -100
+    @include animation('outer-ripple 2s linear infinite')
+  &:before
+    z-index: -200
+    @include animation('inner-ripple 2s linear infinite')
+
+@include keyframes(pulse)
+  0%
+    transform: scale(0.8)
+    -webkit-transform: scale(0.8)
+    filter: alpha(opacity = 50)
+    opacity: 0.5
+
+  10%
+    transform: scale(1.1)
+    -webkit-transform: scale(1.1)
+    filter: alpha(opacity = 1)
+    opacity: 1
+
+  20%
+    transform: scale(0.9)
+    -webkit-transform: scale(0.9)
+    filter: alpha(opacity = 1)
+    opacity: 1
+
+  100%
+    transform: scale(0.8)
+    -webkit-transform: scale(0.8)
+    filter: alpha(opacity = 50)
+    opacity: 0.5
+
+/* outer ripple */
+
+@include keyframes(outer-ripple)
+  0%
+    transform: scale(1)
+    -webkit-transform: scale(1)
+    filter: alpha(opacity = 50)
+    opacity: 0.5
+
+  80%
+    transform: scale(4.5)
+    -webkit-transform: scale(4.5)
+    filter: alpha(opacity = 0)
+    opacity: 0
+
+  100%
+    transform: scale(4.5)
+    -webkit-transform: scale(4.5)
+    filter: alpha(opacity = 0)
+    opacity: 0
+
+/* inner ripple */
+
+@include keyframes(inner-ripple)
+  0%
+    transform: scale(1)
+    -webkit-transform: scale(1)
+    filter: alpha(opacity = 50)
+    opacity: 0.5
+
+  30%
+    transform: scale(1)
+    -webkit-transform: scale(1)
+    filter: alpha(opacity = 50)
+    opacity: 0.5
+
+  100%
+    transform: scale(3.5)
+    -webkit-transform: scale(3.5)
+    filter: alpha(opacity = 0)
+    opacity: 0
+
+/* SETTINGS */
+.thumb-xxl
+  width: 160px
+  display: inline-block
+.button-edit
+  padding: 5px
+  position: absolute
+  top: 50%
+  right: 50%
+  margin-right: -80px
+  margin-top: 35px
+
+.m-l-extra
+  margin-left: 54px
+.bar-no-border
+  border: none
+  background-image: none !important
+/* end of SETTINGS */
+
+/* MATCHES */
+.scroll-horizontal
+  white-space: nowrap
+  // overflow-x: scroll
+  // overflow-y: hidden
+  .scroll-item
+    display: inline-block
+    float: static
+
+.rounded-matches
+  padding: 3px
+  min-width: 20px
+  display: inline-block
+/* end of MATCHES */
+
+/* PROFILE */
+.profile .scroll
+  padding-bottom: 100px
+.header-bar-transparent
+  position: absolute
+  top: 0
+  height: 54px
+  z-index: 10
+  padding: 8px
+  width: 100%
+  button
+    padding: 3px 14px
+    background-color: rgba(0,0,0,.5)
+    color: white
+    font-weight: bold
+    border: none
+    border-radius: 999em
+.profile-slide
+  height: 330px
+  .image
+    background-position: center center
+    background-size: cover
+    width: 100%
+    height: 100%
+.slider-pager .slider-pager-page
+  color: #aaa
+  opacity: 1
+  width: 10px
+  &.active
+    color: $tinderRed
+  .icon.ion-record
+    font-size: 10px
+.instagram-gallery
+  .slider-pager
+    bottom: inherit
+    text-align: right
+    top: 0px
+.photo-pickable
+  position: relative
+  .photo-number
+    position: absolute
+    top: 5px
+    left: 5px
+  .photo-button
+    position: absolute
+    bottom: -5px
+    right: -5px
+    padding: 2px 4px
+
+.friends-holder
+  position: absolute
+  bottom: -90px
+  width: 100%
+  left: 0
+.friend-holder
+  padding: 16px 20px
+  position: relative
+  &:nth-child(2)
+    bottom: -10px
+
+.has-curved-bg
+  position: relative
+  overflow: hidden
+  height: 64px
+  .top-of-curved
+    z-index: 10000
+  .curved
+    top: 25px
+  &.down
+    .curved
+      top: inherit
+      bottom: 25px
+.curved
+  position: absolute
+  bottom: -50px
+  width: 150%
+  height: 300px
+  border-radius: 50%
+  background-color: $colorfulEnd
+  margin-left: 50%
+  z-index: 1
+  transform: translate(-50%, 0)
+
+/* end of PROFILE */
+
+/* MATCH */
+.bg-match
+  background-position: center center
+  background-size: cover
+  background-image: url('../img/bg_match.png')
+/* end of MATCH */
+
+.bg-colorful
+  background-image: -webkit-gradient(linear, left 0, left 100%, from($colorfulStart), to($colorfulEnd))
+  background-image: -webkit-linear-gradient(left, $colorfulStart, 0, $colorfulEnd, 100%)
+  background-image: -moz-linear-gradient(left, $colorfulStart 0, $colorfulEnd 100%)
+  background-image: linear-gradient(to right, $colorfulStart 0, $colorfulEnd 100%)
+  background-repeat: no-repeat
+  color: #fff
+  background-color: $colorfulEnd;
+.item-avatar.item-narrow
+  padding-top: 0px
+  padding-bottom: 0px
+  min-height: 50px
+  & > img
+    top: 8px
+  .title
+    padding: 16px 0
+/* My Tinder Plus */

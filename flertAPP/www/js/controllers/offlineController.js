@@ -1,0 +1,2 @@
+app.controller('OfflineController', function ($scope, $stateParams, $sanitize, $ionicScrollDelegate, $ionicSlideBoxDelegate, $ionicHistory, $timeout, $state, $localStorage, $rootScope, Config, FirebaseFactory, LoginService) {
+});

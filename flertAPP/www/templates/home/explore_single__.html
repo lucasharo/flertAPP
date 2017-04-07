@@ -1,0 +1,46 @@
+<div vertical layout fit>
+        <div ng-repeat="card in cards" class="card-tinder bg-white" ng-click="openProfileModal(true)">
+          <picture>
+  <source media="(min-width: 800px)"
+          sizes="80vw"
+          srcset="img/adam.jpg 640w,
+                  img/adam.jpg 1280w,
+                  img/adam.jpg 2560w">
+  <img src="img/adam.jpg" width="100%" alt="lighthouse"
+       sizes="80vw"
+       srcset="img/adam.jpg 160w,
+               img/adam.jpg 320w,
+               img/adam.jpg 640w,
+               img/adam.jpg 1280w">
+</picture>
+        </div>
+
+  <div class="card-actions padder-v" horizontal layout around-justified center>
+    <div class="card-action">
+      <button class="button button-light rounded" ng-click="reset()">
+        <i class="icon ion-refresh energized text-2x rounded"></i>
+      </button>
+    </div>
+    <div class="card-action bigger-button">
+      <button class="button button-large button-light rounded" ng-class="{zoom: isMoveLeft}" ng-click="cardDestroyed(0)">
+        <i class="icon ion-close-round text-2x rounded" ng-class="cards.length == 0 ? 'stable' : 'assertive'"></i>
+      </button>
+    </div>
+    <div class="card-action">
+      <button class="button button-light rounded" ng-click="cardDestroyed(0)">
+        <i class="icon ion-flash text-2x rounded" ng-class="cards.length == 0 ? 'stable' : 'royal'"></i>
+      </button>
+    </div>
+
+    <div class="card-action bigger-button">
+      <button class="button button-large button-light rounded" ng-class="{zoom: isMoveRight}" ng-click="cardDestroyed(0)">
+        <i class="icon ion-heart text-2x rounded" ng-class="cards.length == 0 ? 'stable' : 'balanced'"></i>
+      </button>
+    </div>
+    <div class="card-action">
+      <button class="button button-light rounded">
+        <i class="icon ion-android-star text-2x rounded" ng-class="cards.length == 0 ? 'stable' : 'calm'"></i>
+      </button>
+    </div>
+  </div>
+</div>

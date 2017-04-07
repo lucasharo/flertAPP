@@ -1,0 +1,61 @@
+<div vertical layout fit>
+  <div class="card-container text-center" flex relative vertical layout>
+    <div ng-show="cards.length == 0" vertical layout center flex>
+      <div flex horizontal layout center>
+        <div class="load">
+          <img src="img/adam.jpg" alt="" class="thumb-lg rounded b b-5x b-light box-shadow">
+        </div>
+      </div>
+      <div class="text-muted text-center l-h">
+        There's no one new around you.
+        <br>
+        Use Passport to choose a new location.
+      </div>
+    </div>
+
+    <td-cards fit>
+      <td-card ng-repeat="card in cards"
+        on-destroy="cardDestroyed($index)"
+        on-swipe-left="cardSwipedLeft($event, $index)"
+        on-swipe-right="cardSwipedRight($event, $index)"
+        on-partial-swipe="cardPartialSwipe(amt)"
+        on-transition-left="transitionLeft(card)"
+        on-transition-right="transitionRight(card)"
+        on-transition-out="transitionOut(card)"
+        class="card-{{$index}}"
+        ng-style="{'z-index': cards.length - $index + 1}"><!-- Work around for The z-index missing issue-->
+        <div class="card-tinder bg-white" vertical layout>
+          <div flex class="group-grid pos-rlt">
+            <div fit>
+              <div style="height: 50%; width: 100%" class="div-img" ng-click="openProfileModal(true)" ng-style="{'background-image': 'url(\'img/adam.jpg\')'}"></div>
+              <div style="height: 50%; width: 50%" class="div-img" ng-click="openProfileModal(true)" ng-style="{'background-image': 'url(\'img/ben.png\')'}"></div>
+              <div style="height: 50%; width: 50%" class="div-img" ng-click="openProfileModal(true)" ng-style="{'background-image': 'url(\'img/perry.png\')'}"></div>
+            </div>
+          </div>
+
+          <div class="item item-icon-left text-left b-none m-n card-footer">
+            <i class="icon ion-ios-people text-muted"></i>
+            <h2>Linh & 2 friends</h2>
+            <p>Going out: (Active 26 min ago)</p>
+          </div>
+
+          <div class="no-text">
+            <span class="wrapper-xs b b-danger b-5x r-3x assertive font-bold text-3x">:(</span>
+          </div>
+          <div class="yes-text">
+            <span class="wrapper-xs b b-success b-5x r-3x balanced font-bold text-3x">;)</span>
+          </div>
+        </div>
+      </td-card>
+    </td-cards>
+  </div>
+
+  <div class="wrapper" horizontal layout around-justified center>
+    <div class="text-muted">
+      <div class="font-bold">Going out tonight?</div>
+      <div class="text-sm">Tell us who you'll be with to start swiping.</div>
+    </div>
+    <button class="button rounded bg-colorful m-l circle-button" style="height: 52px" ng-click="openAddFriendModal()">
+      <i class="icon ion-chevron-up"></i>
+    </button>
+</div>

@@ -1,0 +1,63 @@
+<ion-modal-view class="bg-grey" id="modal-perfil">
+	<ion-header-bar class="bg-dark" style="border: none; background-image: none">
+		<h1 class="title color-light-grey">{{usuarioModal.nome}}</h1>
+		<button class="button button-clear button-royal" style="font-size: 28px !important; padding-right: 5px !important" ng-click="editProfileModal.hide()"><i class="ion-close-round"></i></button>
+	</ion-header-bar>
+	
+	<ion-content class="profile bg-grey wrapper">
+		<form name="formPerfil">
+			<div class="row no-padder">
+				<div class="col" ng-click="alterarFotoPerfil(usuarioPerfil.img.time)">
+					<img preload-image ng-src="{{usuarioPerfil.img.src}}" default-image="img/no-image.png" class="w-full r-3x">					
+				</div>
+			</div>
+			<div class="row no-padder" ng-repeat="foto in fotos" ng-if="$index % 3 === 0">
+				<div class="col col-33" ng-if="$index < fotos.length" on-hold="removeFoto($index)">
+					<img preload-image ng-src="{{fotos[$index].thumb}}" default-image="img/no-image.png" class="w-full r-3x">
+				</div>
+				<div class="col col-33" ng-if="$index + 1 < fotos.length" on-hold="removeFoto($index + 1)">
+					<img preload-image ng-src="{{fotos[$index + 1].thumb}}" default-image="img/no-image.png" class="w-full r-3x">
+				</div>
+				<div class="col col-33" ng-if="$index + 2 < fotos.length" on-hold="removeFoto($index + 2)">
+					<img preload-image ng-src="{{fotos[$index + 2].thumb}}" default-image="img/no-image.png" class="w-full r-3x">
+				</div>
+			</div>
+		
+			<div class="text-muted text-md b-b b-light">
+				<div class="m-b-md font-bold text-u-c royal padding-top-15">Nome</div>
+				<div class="text-md">
+					<input id="nome" class="item bg-grey color-light-grey text-md" type="text" style="width: 100%;" ng-model="usuarioModal.nome" maxlength="25" required>
+				</div>
+			</div>
+
+			<div class="text-muted text-md b-b b-light">
+				<div class="m-b-md font-bold text-u-c royal padding-top-15">Sobre</div>
+				<textarea class="bg-grey color-light-grey text-md" style="width: 100%; height: 100px" ng-model="usuarioModal.descricao" maxlength="250" required>
+				</textarea>
+			</div>		
+
+			<div class="text-muted text-md bottom-20 b-b b-light">
+				<div class="m-b-md font-bold text-u-c royal padding-top-15">Sexo</div>
+				<div class="list m-b-sm">
+				  <div class="item item-text-wrap bg-grey item-icon-right no-border padding-left-0 padding-top-0" ng-click="usuarioModal.sexo = 1">
+					<div class="item bg-grey color-light-grey boder-none text-md no-padder">
+						Masculino
+					</div>
+					<i class="icon ion-man royal" ng-show="usuarioModal.sexo == 1"></i>
+				  </div>
+				  <div class="item item-text-wrap bg-grey item-icon-right no-border padding-left-0" ng-click="usuarioModal.sexo = 2">
+					<div class="item bg-grey color-light-grey boder-none text-md no-padder">
+						Feminino
+					</div>
+					<i class="icon ion-woman royal" ng-show="usuarioModal.sexo == 2"></i>
+				  </div>
+				</div>
+			</div>
+			<div class="padding">
+				<button ng-click="salvar(usuarioModal)" class="button button-block button-royal" ng-disabled="formPerfil.$invalid">
+					Salvar
+				</button>
+			</div>
+		</form>
+	</ion-content>
+</ion-modal-view>

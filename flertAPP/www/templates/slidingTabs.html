@@ -1,0 +1,18 @@
+<ion-view>
+    <ion-content scroll="false">
+      	<tab-slide-box>
+			<div class="tsb-icons">
+				<div class="tsb-ic-wrp">
+					<ion-scroll direction="x" class="tsb-hscroll">
+						<a href="javascript:;" class="{{tab.icon}} {{tab.class}}" ng-repeat="tab in tabs" on-finish-render="test()"></a>
+					</ion-scroll>
+				</div>
+			</div>
+			<ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
+				<ion-slide ng-repeat="tab in tabs">
+					<div ng-include="tab.url"></div>
+				</ion-slide>			            
+			</ion-slide-box>
+      	</tab-slide-box>
+    </ion-content>
+</ion-view>

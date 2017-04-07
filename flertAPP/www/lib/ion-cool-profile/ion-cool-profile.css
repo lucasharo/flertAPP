@@ -1,0 +1,65 @@
+/*
+ *  Author : Rishi Vedpathak
+ *  Date : 30/11/2016
+ *  Repository : ionic-cool-profile
+ *  The MIT License (MIT) - Copyright (c) [2015] [Rishikesh Vedpathak]
+ */
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-profile-name {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0 0 0 10px;
+    line-height: 30px;
+}
+
+[user-profile-header] {
+    
+}
+
+[user-profile-sub-header] {
+    height: 44px;
+    display: none;
+    background: #333;
+    font-size: 19px;
+	border: none;
+}
+
+/* ADyba edit */
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}

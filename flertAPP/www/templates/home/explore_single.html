@@ -1,0 +1,13 @@
+<ion-view view-title="Baladas" ng-controller="EmpresasController" id="page-empresas">
+    <ion-content has-bouncing="true">
+		<spinner-local show="show"></spinner-local>
+		<div ng-repeat="empresa in empresas" ng-click="goToEmpresa(empresa.$id)">        
+			<figure class="cap-top">
+				<img width="100%" ng-src="{{empresa.img.src}}" preload-image default-image="img/no-image.png"/>
+				<figcaption class="bg-titulo-baladas">
+					{{empresa.nome}} <span class="float-right">{{empresa.qtdComentarios}} <i class="ion-chatbox-working"></i> {{empresa.qtdUsuarios}} <i class="ion-person-stalker"></i></span>
+				</figcaption>
+			</figure>
+		</div>
+    </ion-content>
+</ion-view>

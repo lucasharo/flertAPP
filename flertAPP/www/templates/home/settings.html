@@ -1,0 +1,57 @@
+<ion-view title="Tinder" style="background-color: #333333;">
+  <ion-nav-title>
+    <button class="button button-clear button-royal m-t-xs">
+      <i class="icon ion-person"></i>
+    </button>
+  </ion-nav-title>
+
+  <ion-nav-buttons side="right">
+	<button class="button button-grey button-clear" nav-direction="forward" ui-sref="home.explore">
+      <span class="dot-notification"></span>
+      <i class="icon ion-android-happy"></i>
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <div class="bg-grey">
+      <div class="wrapper text-center">
+        <div class="pos-rlt" ng-click="goToPerfil(usuario.id)">
+          <img ng-src="{{usuario.img.thumb}}" preload-image default-image="img/no-image.png" alt="" class="thumb-xxl rounded">
+        </div>
+        <div class="wrapper-xs text-center">
+          <div class="text-xl m-b-xs color-white">{{usuario.nome}}</div>
+          <div class="color-light-grey">{{usuario.descricao}}</div>
+        </div>
+      </div>
+
+      <div class="row no-padder">
+        <div class="col no-padder text-center">
+          <button class="button button-clear button-royal" ng-click="openTinderplusModal()"><span class="text-sm">MEU FLERT +</span></button>
+        </div>
+        <div class="col no-padder text-center">
+          <button class="button button-clear button-royal" ng-click="openSettingsModal()"><span class="text-sm">CONFIGURAÇÕES</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="has-curved-bg down" style="height: 74px">
+      <div class="text-center pos-abt left top bottom right top-of-curved">
+	  <div class="bg-grey rounded inline box-shadow m-l-sm m-r-sm" ng-repeat="foto in fotos" ng-if="$index < 3" style="position: relative; padding: 5px;">
+		<img ng-src="{{foto.thumb}}" preload-image default-image="img/no-image.png" class="rounded" style="width: 50px; height: 50px;"/>
+	  </div>
+			<!--<img ng-repeat="foto in fotos" ng-if="$index < 3" ng-src="{{foto.thumb}}" preload-image default-image="img/no-image.png" alt="" style="width: 50px; height: 50px;" class="stable-bg rounded inline box-shadow m-l-sm m-r-sm text-muted text-2x">
+          <i class="icon ion-person text-muted text-2x"></i>-->
+       
+      </div>
+      <div class="curved"></div>
+    </div>
+
+    <div class="wrapper text-center">
+      <h3>Going out tonight?</h3>
+      <p class="text-muted">Invite your friends to swipe & match with groups of friends going out tonight.</p>
+      <div class="padder">
+        <button class="button bg-colorful rounded button-block" ng-click="openAddFriendModal()">INDO PARA BALADA</button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

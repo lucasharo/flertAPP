@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "901633122998",
+    "firebase_url": "https://flertapp.firebaseio.com",
+    "project_id": "firebase-flertapp",
+    "storage_bucket": "firebase-flertapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901633122998:android:eaeba2544cb33294",
+        "android_client_info": {
+          "package_name": "com.flertApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901633122998-08749164asa91uv3ahd9igm0o1c5v7t9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpkUFX72vOoLixF2L1lsH1JF7GTDjGuUs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

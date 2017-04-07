@@ -1,0 +1,78 @@
+<ion-view title="Tinder" class="has-giphy" style="background-color: #333" ng-class="{'show-gif': isGifShown}">
+  <ion-nav-buttons side="left">
+    <button class="button button-clear" nav-direction="back" ng-click="goBack()">
+      <i class="icon ion-arrow-left-c royal"></i>
+    </button>
+  </ion-nav-buttons>
+
+  <ion-nav-title>
+    <div class="thumb-xs rounded color-light-grey"  ng-click="goToPerfil(usuarioChat.id)">
+      <img ng-src="{{usuarioChat.img.thumb}}" style="margin-left: -100px;" class="thumb-xs rounded" alt="">
+      {{usuarioChat.nome}}
+    </div>
+  </ion-nav-title>
+
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="showUserOptions()">
+      <i class="icon ion-more royal"></i>
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content delegate-handle="userMessageScroll" class="bg-grey">
+    <div class="wrapper text-center m-t-md" ng-if="!aceito">
+      <div class="text-lg">You matched with <span class="font-bold">{{usuarioChat.nome}}</span> </div>
+      <div class="m-b-md">2 hours ago</div>
+      <div class="thumb-xxl rounded">
+        <img ng-src="{{usuarioChat.img.thumb}}" class="thumb-xxl rounded" alt="">
+      </div>
+      <div class="text-lg font-thin">Which photo is your favorite?</div>
+    </div>
+
+    <div ng-if="mensagens.length > 0" style="padding-top: 10px">
+      <!-- Chat bubbles -->
+      <div class="list chat-bubble">
+        <div class="timestamp color-light-grey" ng-repeat-start="mensagem in mensagens">{{mensagem.dtMensagem | date:'dd/MM/yyyy HH:mm'}}</div>
+        <div class="item item-avatar b-none bg-grey" ng-class="mensagem.usuarioId == usuario.id?'me':'friend'" href="#" ng-repeat-end>
+          <img ng-src="{{usuarioChat.img.thumb}}" ng-if="mensagem.usuarioId != usuario.id">
+          <div class="bubble" ng-class="{'bubble-image': mensagem.tipo == 2}">
+            <i class="icon-tail"></i>
+            <span class="content color-white" ng-if="mensagem.tipo == 1" ng-bind-html="mensagem.mensagem | nl2br" ></span>
+            <img ng-src="{{mensagem.mensagem}}" preload-image default-image="img/no-image.png" ng-class="{'gif-other': mensagem.usuarioId != usuario.id}" alt="" ng-if="mensagem.tipo == 2">
+          </div>
+          <span class="message-status" ng-if="mensagem.usuarioId == usuario.id && mensagem.enviado"><i class="ion-checkmark-round"></i></span>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar style="padding-right: 0px; background-image: none;" class="bg-dark item-input-inset" keyboard-attach elastic>
+    <div class="giphy-container" ng-show="isGifShown">
+      <div class="text-center" ng-show="isGifLoading">
+        <ion-spinner icon="ios"></ion-spinner>
+      </div>
+      <ion-scroll direction="x" class="scroll-horizontal" delegate-handle="scroll-gif">
+        <div class="text-center scroll-item" ng-repeat="gif in gifs track by $index" ng-click="enviaMensagem(gif.images.fixed_height_small.url, 2)">
+          <img ng-src="{{gif.images.fixed_height_small.url}}" preload-image default-image="img/no-image.png" alt="">
+        </div>
+      </ion-scroll>
+    </div>
+
+    <div class="footer-btn-wrap">
+      <button type="button" class="button button-stable button-clear footer-btn" ng-show="!isGifShown" ng-click="openGiphy()">
+        <span class="font-bold text-xs"><i class="icon ion-image color-light-grey"></i></span>
+      </button>
+      <button type="button" class="button button-clear button-royal footer-btn" ng-show="isGifShown" ng-click="isGifShown = false">
+        <i class="icon ion-close-round"></i>
+      </button>
+    </div>
+    <label class="item-input-wrapper" style="background: none !important;">
+      <textarea class="color-white bg-dark" rows="1" msd-elastic placeholder="Mensagem..." id="type-area" ng-model="mensagem" ng-show="!isGifShown">
+      </textarea>
+      <input type="search" placeholder="Procurar um GIF..." class="color-white bg-dark" id="type-area2" ng-model="gifQuery" ng-model-options="{ debounce: 500 }" ng-show="isGifShown">
+    </label>
+    <div class="footer-btn-wrap">
+      <button type=submit class="button button-royal button-clear footer-btn icon ion-android-send" style="right: 5px;" ng-click="enviaMensagem(mensagem, 1)" ng-disabled="mensagem.length == 0" ng-show="!isGifShown">        
+      </button>
+    </div>
+  </ion-footer-bar>
+</ion-view>

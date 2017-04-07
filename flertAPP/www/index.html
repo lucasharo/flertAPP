@@ -1,36 +1,96 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="connect-src *">
     <title></title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+    <!-- compiled css output -->
+    <link href="css/ionic.app.css" rel="stylesheet"/>
+	<link href="css/app.css" rel="stylesheet"/>
+	<link href="lib/angular-toast/angular-toastr.min.css" rel="stylesheet"/>
+	<link href="lib/ion-cool-profile/ion-cool-profile.css" rel="stylesheet"/>
+	<!--<link href="lib/materialize/css/materialize.css" rel="stylesheet" />-->
+    <!-- <link rel="stylesheet" href="lib/ionic-ion-tinder-cards/ionic.tdcards.css"> -->
+	
 
-    <script src="js/platformOverrides.js"></script>
-    
     <!-- ionic/angularjs js -->
+	<script src="lib/jquery/jquery-1.12.2.js?VersionNumber"></script>
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/collide/collide.js"></script>
+    <script src="lib/tinder-cards/ionic.tdcards.js"></script>
+    <script src="lib/elastic/elastic.js"></script>
+    <script src="js/giphy.js"></script>
+    <script src="lib/ion-sticky/ion-sticky.js"></script>
+    <script src="lib/ngCordova/ng-cordova.min.js"></script>
+	<script src="lib/angular-local-storage/localStorage.js"></script>
+    <script src="lib/angular-input-mask/angular-input-masks-dependencies.js"></script>
+    <script src="lib/angular-input-mask/angular-input-masks.js"></script>
+    <script src="lib/angular-toast/angular-toastr.min.js"></script>
+    <script src="lib/angular-toast/angular-toastr.tpls.min.js"></script>
+	<script src="lib/angular-preload-image/angular-preload-image.js"></script>
+    <script src="lib/moment/angular-locale_pt-pt.js"></script>
+	<script src="lib/firebase/firebase.js"></script>
+    <script src="lib/firebase/angularfire.min.js"></script>
+	<script src="lib/ion-cool-profile/ion-cool-profile.js"></script>
+	<script src="lib/ionic-datepicker/ionic-datepicker.bundle.min.js"></script>
+	<script src="lib/ionic-datepicker/ionic-timepicker.bundle.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter">
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
+    <!-- <script src="js/ionic.tdcards.custom.js"></script> -->
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
+    <script src="js/controllers/menuController.js"></script>
+    <script src="js/controllers/empresaController.js"></script>
+    <script src="js/controllers/empresasController.js"></script>
+	<script src="js/controllers/empresasPesquisaController.js"></script>
+    <script src="js/controllers/chatController.js"></script>
+    <script src="js/controllers/batepapoController.js"></script>
+    <script src="js/controllers/loginController.js"></script>
+    <script src="js/controllers/perfilController.js"></script>
+    <script src="js/controllers/comentatiosController.js"></script>
+	<script src="js/controllers/contatosController.js"></script>
+	<script src="js/controllers/redeController.js"></script>
+	<script src="js/controllers/configuracaoController.js"></script>
+	<script src="js/controllers/eventoController.js"></script>
+	<script src="js/controllers/offlineController.js"></script>
+
+    <script src="js/services/loginService.js"></script>
+    <script src="js/services/loadService.js"></script>
+    <script src="js/services/toastService.js"></script>
+    <script src="js/services/usuariosService.js"></script>
+    <script src="js/services/chatService.js"></script>
+    <script src="js/services/imagemService.js"></script>
+    <script src="js/services/comentariosService.js"></script>
+    <script src="js/services/perfilService.js"></script>
+    <script src="js/services/usuariosService.js"></script>
+	<script src="js/services/contatosService.js"></script>
+	<script src="js/services/pushService.js"></script>
+	<script src="js/services/eventosService.js"></script>
+
+    <script src="js/factories/firebaseFactory.js"></script>
+    <script src="js/factories/usuarioFactory.js"></script>
+	<script src="js/factories/usuariosFactory.js"></script>
+    <script src="js/factories/empresasFactory.js"></script>
+	<script src="js/factories/contatosFactory.js"></script>
+	<script src="js/factories/redeFactory.js"></script>
+	<script src="js/factories/eventoFactory.js"></script>
+
+    <script src="js/constants/config.js"></script>
+
+    <script src="js/directives/directives.js"></script>
+
+    <script src="js/filters/filters.js"></script>
+  </head>
+  <body ng-app="app" ng-controller="AppCtrl" ng-cloak>
+		<ion-pane ui-view=""></ion-pane>
   </body>
 </html>

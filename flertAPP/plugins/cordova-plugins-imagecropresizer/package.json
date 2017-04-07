@@ -1,0 +1,29 @@
+{
+  "name": "image-crop-resizer",
+  "version": "1.0.1",
+  "description": "A Cordova plugin to crop/resize the image",
+  "cordova": {
+    "id": "cordova-plugins-imagecropresizer",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhouhao27/ImageCropResizer.git"
+  },
+  "keywords": [
+    "cordova",
+    "plugin",
+    "image",
+    "resize",
+    "crop",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Zhou Hao",
+  "license": "MIT",
+  "homepage": "https://github.com/zhouhao27/ImageCropResizer/tree/master/ImageCropResizer"
+}

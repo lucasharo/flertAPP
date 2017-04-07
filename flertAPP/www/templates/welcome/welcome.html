@@ -1,0 +1,51 @@
+<ion-view>
+  <div class="wrapper" fit vertical layout justified style="background: url('img/fundo_login.jpg') no-repeat; background-size: cover;" >
+    <!--<ion-slide-box on-slide-changed="slideHasChanged($index)" active-slide="activeIndex" ng-init="activeIndex = 0" class="m-t">
+      <ion-slide class="text-center flex-vertical-center" ng-repeat="i in [1,2,3]">
+        <img class="w-full" ng-src="img/intro_{{i}}.jpg" alt="">
+      </ion-slide>
+    </ion-slide-box> -->
+	
+	<div class="list">
+            <img src="img/logo.png" style="width: 40%;" class="logo">
+            <form class="col" name="formLogin" novalidate>
+                <div class="row margin-0px">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate" ng-model="usuarioLogin.email" required style="color: #fff; border-bottom: 1px solid #fff; box-shadow: 0 1px 0 0 #fff">
+                        <label for="email" style="color: #fff !important">Email</label>
+                    </div>
+                </div>
+                <div class="row margin-0px" style="padding-bottom: 0px !important;">
+                    <div class="input-field col s12">
+                        <input id="senha" type="password" class="validate" ng-model="usuarioLogin.senha" required style="color: #fff; border-bottom: 1px solid #fff; box-shadow: 0 1px 0 0 #fff">
+                        <label for="senha" style="color: #fff !important">Senha</label>
+                    </div>
+                </div>
+				<div style="padding: 0px 16px 16px 16px !important;">
+					<a href="" style="color: #fff" ng-click="modalNovaSenha.show()">Esqueci minha senha</a>
+				</div>
+                <div style="padding: 0px 16px 0px 16px !important;">
+                    <button ng-click="signIn(usuarioLogin)" class="button button-block button-royal margin-0px">
+                        Entrar
+                    </button>
+                </div>
+            </form>
+            <div class="padding" style="text-align:center">
+                    <button ng-click="modal.show()" class="button button-small button-outline icon-left ion-person-add button-royal" style="color: white">
+                        Criar uma nova conta
+                    </button>
+                <div class="spacer" style="height: 10px;"></div>
+                    <button class="button button-block icon-left ion-social-facebook button-positive" ng-click="loginFacebook()">Facebook</button>
+                </div>
+        </div>
+
+    <div class="text-center text-muted">
+      By continuing, you agree to our <span class="font-bold">Terms of Service</span> and <span class="font-bold">Privacy Policy</span>
+      <button class="button button-block button-positive" ng-click="loginFacebook()">Log In with Facebook</button>
+      <div>
+        <i class="icon ion-information-circled"></i>
+        We don't post anything to Facebook.
+      </div>
+    </div>
+  </div>
+</ion-view>

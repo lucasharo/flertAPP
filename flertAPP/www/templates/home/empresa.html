@@ -1,0 +1,71 @@
+<ion-view>	
+	<ion-nav-buttons side="left">
+		<button class="button button-clear" nav-direction="back" ui-sref="home.explore">
+			<i class="icon ion-arrow-left-c royal"></i>
+		</button>
+	</ion-nav-buttons>
+  
+	<ion-nav-title class="color-light-grey">
+		{{empresa.nome}}
+	</ion-nav-title>
+
+	<ion-nav-buttons side="right">
+		<button class="button button-clear" ng-click="showUserOptions()">
+			<i class="icon ion-more royal"></i>
+		</button>
+	</ion-nav-buttons>
+	
+	<ion-content class="bg-grey padding-bottom-30px">
+		<img ng-src="{{empresa.img.src}}" preload-image default-image="img/no-image.png" width="100%">
+		<i class="button icon bg-colorful box-shadow light text-xl rounded circle-button" style="float: right; margin-right: 30px; margin-top: -27px; padding-top: 7px; color: #fff" ng-class="{'ion-android-favorite': curti, 'ion-android-favorite-outline': !curti}" on-touch="curtirDescurtir(empresa.$id)"></i>
+
+		<!--<div class="wrapper b-b b-light text-muted text-md">
+		  <div class="font-bold m-b-sm text-c">55 Friends For Common Connections</div>
+		  <div>
+			We compare your Facebook friends with those of your matches to display any common connections
+		  </div>
+		</div>
+		<button class="button button-block button-positive" ng-click="addEvento(empresa.$id)">Log In with Facebook</button>-->
+
+		<div class="wrapper b-b b-light text-muted text-md padding-bottom-50px">		
+			<div class="b-b b-light">
+				<div class="m-b-md font-bold text-u-c royal padding-top-15">Categorias</div>
+				<span class="button button-outline button-small button-stable text-c m-r-sm m-b-sm" ng-show="empresa.categoria.eletronica">Eletronica</span>
+				<span class="button button-outline button-small button-stable text-c m-r-sm m-b-sm" ng-show="empresa.categoria.funk">Funk</span>
+				<span class="button button-outline button-small button-stable text-c m-r-sm m-b-sm" ng-show="empresa.categoria.rap">Rap</span>
+				<span class="button button-outline button-small button-stable text-c m-r-sm m-b-sm" ng-show="empresa.categoria.rock">Rock</span>
+				<span class="button button-outline button-small button-stable text-c m-r-sm m-b-sm" ng-show="empresa.categoria.samba">Samba</span>
+				<span class="button button-outline button-small button-stable text-c m-r-sm m-b-sm" ng-show="empresa.categoria.sertaneja">Sertanejo</span>
+			</div>
+		  
+			<div class="m-b-md font-bold text-u-c royal padding-top-15">Eventos <span class="rounded-matches text-center rounded color-white royal-bg">{{empresa.qtdEventos}}</span></div>
+		  
+			<ion-scroll direction="x" class="scroll-horizontal wrapper-xs b-b b-light">
+				<div class="row no-padder">
+					<div ng-repeat="evento in ultimosEventos" class="col col-33" ui-sref="home.evento({empresaId: empresa.$id, eventoId: evento.$id})" on-hold="removeFoto($index)">
+						<img preload-image ng-src="{{evento.img.thumb}}" default-image="img/no-image.png" class="w-full r-3x" alt="">						
+					</div>
+					<div class="col col-33" on-tap="abrirImagemModal($index)" on-hold="removeFoto($index)">
+						<img preload-image ng-src="http://www.clipartbest.com/cliparts/4T9/zBp/4T9zBpp8c.png" default-image="img/no-image.png" class="w-full r-3x" alt="">
+					</div>
+				</div>
+			</ion-scroll>
+			<div class="m-b-md font-bold text-u-c royal padding-top-15">Flerts <span class="rounded-matches text-center rounded color-white royal-bg padding-3">{{empresa.qtdUsuarios > 0 ? (empresa.qtdUsuarios - 1) : 0}}</span></div>
+			<!--<div horizontal layout justified style="padding: 15px">
+			<div class="font-bold m-b-sm text-c royal">{{empresa.qtdUsuarios}} Flerts</div>
+			<!--<div class="pager-secondary text-xxs" ng-init="activeBox = 0">
+			  <span class="" ng-repeat="i in getNumber(fotos.length) track by $index" ng-class="{'color-red-tinder': $index == activeBox}">
+				<i class="icon ion-record"></i>
+			  </span>
+			</div>-->
+			<div class="clear m-b-sm" ng-repeat="usuarioLista in usuarios" ng-if="usuario.id != usuarioLista.id && usuarioLista.visivel && ((usuario.filtro.sexo.homem && usuarioLista.sexo == 1) || (usuario.filtro.sexo.mulher && usuarioLista.sexo == 2))" nav-direction="forward" ng-click="goToChat(usuarioLista.id)">
+				<img ng-src="{{usuarioLista.img.thumb}}" preload-image default-image="img/anonimo.png" alt="" class="thumb-md rounded pull-left m-l m-r-md">
+				<div class="text-lg b-b b-light clear padder-v">
+					<div class="text-c color-white">{{usuarioLista.nome}}</div>
+					<p class="text-sm  color-light-grey">{{usuarioLista.ultimaMensagem.tipo == 1 ? usuarioLista.ultimaMensagem.mensagem : 'GIF'}}</p>
+				</div>
+			</div>
+		</div>
+  </ion-content>
+  <i class="button icon ion-plus-round bg-colorful box-shadow light text-xl rounded circle-button" style="position: absolute; bottom: 30px; right: 30px; padding-top: 7px; color: #fff" ng-click="abrirModalEventos()" ng-if="isAdm"></i>
+</ion-view>

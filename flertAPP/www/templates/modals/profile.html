@@ -1,0 +1,92 @@
+<ion-modal-view>
+  <ion-content class="profile">
+    <div class="header-bar-transparent" horizontal layout justified>
+      <button class="button button-clear color-white" ng-click="closeProfileModal()">
+        <i class="icon ion-arrow-down-b"></i>
+      </button>
+	  
+	  <button class="button button-clear color-white" ng-if="usuarioPerfil.id == usuario.id" ng-click="openEditProfileModal()">
+        <i class="icon ion-edit"></i>
+      </button>
+    </div>
+
+    <ion-slide-box class="profile-slide" on-slide-changed="slideHasChanged($index)">
+      <ion-slide ng-repeat="foto in fotos">
+        <div class="image" style="margin-top: -80px" preload-bg-image="{{foto.src}}" default-image="img/no-image.png"><div class="bg-header-gradient" style="width: 100%; height: 50px"></div></div>
+      </ion-slide>
+    </ion-slide-box>
+
+    <div class="wrapper b-b b-light">
+      <div class="text-xl">
+        <span class="font-bold">{{usuarioPerfil.nome}}</span>, 29
+      </div>
+      <div class="text-muted">
+	  <br/>
+        <p>{{usuarioPerfil.descricao}}</p>
+      </div>
+    </div>
+
+    <!--<div class="wrapper b-b b-light text-muted text-md">
+      <div class="font-bold m-b-sm text-c">55 Friends For Common Connections</div>
+      <div>
+        We compare your Facebook friends with those of your matches to display any common connections
+      </div>
+    </div>-->
+
+    <div class="wrapper b-b b-light text-muted text-md">
+      <div horizontal layout justified>
+        <div class="font-bold m-b-sm text-c">{{fotos.length}} Fotos</div>
+        <!--<div class="pager-secondary text-xxs" ng-init="activeBox = 0">
+          <span class="" ng-repeat="i in getNumber(fotos.length) track by $index" ng-class="{'color-red-tinder': $index == activeBox}">
+            <i class="icon ion-record"></i>
+          </span>
+        </div>--> 
+      </div>
+      
+      <!--<ion-slide-box class="instagram-gallery" show-pager="false" active-slide="activeBox">
+        <ion-slide ng-repeat="i in getNumber(fotos.length) track by $index">-->
+          <div class="row no-padder" ng-repeat="foto in fotos" ng-if="$index % 3 === 0">
+            <div class="col col-33" ng-if="$index < fotos.length" on-tap="abrirImagemModal($index)" on-hold="removeFoto($index)">
+              <img preload-image ng-src="{{fotos[$index].thumb}}" default-image="img/no-image.png" class="w-full r-3x" alt="">
+            </div>
+			<div class="col col-33" ng-if="$index + 1 < fotos.length" on-tap="abrirImagemModal($index + 1)" on-hold="removeFoto($index + 1)">
+              <img preload-image ng-src="{{fotos[$index + 1].thumb}}" default-image="img/no-image.png" class="w-full r-3x" alt="">
+            </div>
+			<div class="col col-33" ng-if="$index + 2 < fotos.length" on-tap="abrirImagemModal($index + 2)" on-hold="removeFoto($index + 2)">
+              <img preload-image ng-src="{{fotos[$index + 2].thumb}}" default-image="img/no-image.png" class="w-full r-3x" alt="">
+            </div>
+          </div>
+        <!--</ion-slide>
+      </ion-slide-box>-->
+    </div>
+
+    <div class="wrapper b-b b-light text-muted text-md">
+      <div class="font-bold m-b-sm text-c">Interesses</div>
+      <span class="button button-outline button-small button-royal text-c m-r-sm m-b-sm" ng-show="usuarioPerfil.filtro.estilo.eletronica">Eletronica</span>
+	  <span class="button button-outline button-small button-royal text-c m-r-sm m-b-sm" ng-show="usuarioPerfil.filtro.estilo.funk">Funk</span>
+	  <span class="button button-outline button-small button-royal text-c m-r-sm m-b-sm" ng-show="usuarioPerfil.filtro.estilo.rap">Rap</span>
+	  <span class="button button-outline button-small button-royal text-c m-r-sm m-b-sm" ng-show="usuarioPerfil.filtro.estilo.rock">Rock</span>
+	  <span class="button button-outline button-small button-royal text-c m-r-sm m-b-sm" ng-show="usuarioPerfil.filtro.estilo.samba">Samba</span>
+	  <span class="button button-outline button-small button-royal text-c m-r-sm m-b-sm" ng-show="usuarioPerfil.filtro.estilo.sertaneja">Sertanejo</span>
+    </div>
+  </ion-content>
+
+  <div class="card-actions padder-v on-profile bg-gd" horizontal layout around-justified center ng-if="isFromCard">
+    <div class="card-action no-padder">
+      <button class="button button-royal rounded" ng-class="{zoom: isMoveLeft}" ng-click="cardDestroyed(0)">
+        <i class="icon ion-close-round text-2x rounded"></i>
+      </button>
+    </div>
+    <div class="card-action no-padder">
+      <button class="button button-calm rounded">
+        <i class="icon ion-android-star text-2x rounded"></i>
+      </button>
+    </div>
+    <div class="card-action no-padder">
+      <button class="button button-balanced rounded" ng-class="{zoom: isMoveRight}" ng-click="cardDestroyed(0)">
+        <i class="icon ion-heart text-2x rounded"></i>
+      </button>
+    </div>
+    
+  </div>
+</ion-modal-view>
