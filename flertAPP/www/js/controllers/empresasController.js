@@ -5,15 +5,13 @@ app.controller('EmpresasController', function ($scope, $ionicHistory, $timeout, 
 		$timeout(function () {
 			$ionicHistory.clearCache();
 			$ionicHistory.clearHistory();
-
-			if(!dev){			
-				PushService.init();
-			}
+						
+			PushService.init();
 		}, 1500);
 		
 		$scope.getEmpresas = function(){		
 			EmpresasFactory.getEmpresas(function(empresas){				
-				$scope.empresas = empresas;			
+				$scope.empresas = empresas;
 					
 				EmpresasFactory.verificaCurtidas();
 
@@ -35,11 +33,10 @@ app.controller('EmpresasController', function ($scope, $ionicHistory, $timeout, 
 		$scope.getEmpresas();
 
 		if(!dev){		
-			if (AdMob) {
-			
-			AdMob.showBanner(AdMob.AD_POSITION.BOTTOM_CENTER);
-			
-			AdMob.showInterstitial();
+			if (AdMob) {			
+				AdMob.showBanner(AdMob.AD_POSITION.BOTTOM_CENTER);
+				
+				AdMob.showInterstitial();
 			}
 		}
 

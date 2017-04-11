@@ -13,7 +13,13 @@
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.flertapp"
         },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.flertapp"
+        },
         "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "com.flertapp"
+        },
+        "cordova-plugin-device": {
             "PACKAGE_NAME": "com.flertapp"
         },
         "cordova-plugin-facebook4": {
@@ -34,12 +40,6 @@
             "PACKAGE_NAME": "com.flertapp"
         },
         "cordova-sqlite-storage": {
-            "PACKAGE_NAME": "com.flertapp"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.flertapp"
-        },
-        "cordova-plugin-console": {
             "PACKAGE_NAME": "com.flertapp"
         },
         "ionic-plugin-keyboard": {

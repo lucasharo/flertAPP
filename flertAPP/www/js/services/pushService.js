@@ -10,49 +10,59 @@ app.service('PushService', function($rootScope) {
 	
     return {
 		init: function(){
-			window.FirebasePlugin.getToken(function(token) {
-				$rootScope.usuario.push.id = token;
-				
-				window.FirebasePlugin.subscribe("all");
-			}, function(error) {
-				alert(error);
-			});		
+			if(!dev){
+				window.FirebasePlugin.getToken(function(token) {
+					$rootScope.usuario.push.id = token;
+					
+					window.FirebasePlugin.subscribe("all");
+				}, function(error) {
+					alert(error);
+				});		
 
-			function didReceiveRemoteNotificationCallBack(jsonData) {
-        		/*alert("Notification received:\n" + JSON.stringify(jsonData.payload));
+				function didReceiveRemoteNotificationCallBack(jsonData) {
+					/*alert("Notification received:\n" + JSON.stringify(jsonData.payload));
 
-				if(jsonData.payload.additionalData.chat){
-					$rootScope.chat(jsonData.payload.additionalData.id);
-				}else if(jsonData.payload.additionalData.empresa){
-					$rootScope.goToEmpresa(jsonData.payload.additionalData.empresa);
-				}*/
-    		}
-			
-			function didOpenRemoteNotificationCallBack (jsonData) {
-				if(jsonData.notification.payload.additionalData.chat){
-					$rootScope.chat(jsonData.notification.payload.additionalData.chat);
-				}else if(jsonData.notification.payload.additionalData.empresa){
-					$rootScope.goToEmpresa(jsonData.notification.payload.additionalData.empresa);
+					if(jsonData.payload.additionalData.chat){
+						$rootScope.chat(jsonData.payload.additionalData.id);
+					}else if(jsonData.payload.additionalData.empresa){
+						$rootScope.goToEmpresa(jsonData.payload.additionalData.empresa);
+					}*/
 				}
-    		}
-			
-			$rootScope.$watch(function(){
-				return $rootScope.usuario.push;
-			}, function(){
-				setConfiguracao();
-			});
+				
+				function didOpenRemoteNotificationCallBack (jsonData) {
+					if(jsonData.notification.payload.additionalData.chat){
+						$rootScope.chat(jsonData.notification.payload.additionalData.chat);
+					}else if(jsonData.notification.payload.additionalData.empresa){
+						$rootScope.goToEmpresa(jsonData.notification.payload.additionalData.empresa);
+					}
+				}
+				
+				$rootScope.$watch(function(){
+					return $rootScope.usuario.push;
+				}, function(){
+					setConfiguracao();
+				});
+			}
 		},
         novaConversa: function(mensagem, userId) {
-			window.plugins.OneSignal.postNotification({ headings: {en: 'Você tem um novo Flert ;)'}, contents: {en: mensagem}, data: {chat: mensagem.usuarioId}, include_player_ids: [userId], android_led_color: '886aea'});		
-        },
-        aceitaConversa: function(mensagem, userId) {  			
-			window.plugins.OneSignal.postNotification({ headings: {en: 'Seu Flert respondeu a mensagem'}, contents: {en: mensagem}, data: {chat: mensagem.usuarioId}, include_player_ids: [userId], android_led_color: '886aea'});
-        },
+			if(!dev){
+				window.plugins.OneSignal.postNotification({ headings: {en: 'Você tem um novo Flert ;)'}, contents: {en: mensagem}, data: {chat: mensagem.usuarioId}, include_player_ids: [userId], android_led_color: '886aea'});		
+			}
+		},
+        aceitaConversa: function(mensagem, userId) {
+			if(!dev){
+				window.plugins.OneSignal.postNotification({ headings: {en: 'Seu Flert respondeu a mensagem'}, contents: {en: mensagem}, data: {chat: mensagem.usuarioId}, include_player_ids: [userId], android_led_color: '886aea'});
+			}
+		},
 		addTopic: function(topic){
-			window.FirebasePlugin.subscribe(topic);
+			if(!dev){
+				window.FirebasePlugin.subscribe(topic);
+			}
 		},
 		removeTopic: function(topic){
-			window.FirebasePlugin.unsubscribe(topic);
+			if(!dev){
+				window.FirebasePlugin.unsubscribe(topic);
+			}
 		}
     }
 })

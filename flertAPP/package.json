@@ -1,7 +1,7 @@
 {
-  "name": "ionic-blankapp",
+  "name": "flertAPP",
   "version": "1.1.1",
-  "description": "An Ionic project",
+  "description": "Flert",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
@@ -19,7 +19,15 @@
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+	"cordova-plugin-admobpro",
+	"cordova-plugin-camera",
+	"cordova-sqlite-storage",
+	"cordova-plugin-splashscreen",
+	"cordova-plugins-imagecropresizer",
+	"cordova-plugin-facebook4",
+	"cordova-plugin-device",
+	"cordova-plugin-datepicker"
   ],
   "cordovaPlatforms": []
 }
