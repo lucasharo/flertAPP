@@ -11,23 +11,31 @@ app.service('PushService', function($rootScope) {
     return {
 		init: function(){
 			if(!dev){
-				window.FirebasePlugin.getToken(function(token) {
-					$rootScope.usuario.push.id = token;
-					
-					window.FirebasePlugin.subscribe("all");
-				}, function(error) {
-					alert(error);
+				var iosSettings = {};
+				iosSettings["kOSSettingsKeyAutoPrompt"] = true;
+				iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
+
+				var notificationOpenedCallback = function(result) {
+				   alert("Notification opened:\n" + JSON.stringify(jsonData));
+				   console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));  
+				};
+
+				window.plugins.OneSignal
+				  .startInit("4850866d-9c36-4823-93dd-02bd85e59fef")
+				  .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
+				  .iOSSettings(iosSettings)
+				  .handleNotificationOpened(notificationOpenedCallback)
+				  .endInit();
+				  
+				window.plugins.OneSignal.registerForPushNotifications();
+				
+				window.plugins.OneSignal.getIds(function(ids) {
+				  console.log('getIds: ' + JSON.stringify(ids));
+				  alert("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+				  
+				  $rootScope.usuario.push.id = ids.userId;
+				  $rootScope.usuario.push.token = ids.pushToken;
 				});		
-
-				function didReceiveRemoteNotificationCallBack(jsonData) {
-					/*alert("Notification received:\n" + JSON.stringify(jsonData.payload));
-
-					if(jsonData.payload.additionalData.chat){
-						$rootScope.chat(jsonData.payload.additionalData.id);
-					}else if(jsonData.payload.additionalData.empresa){
-						$rootScope.goToEmpresa(jsonData.payload.additionalData.empresa);
-					}*/
-				}
 				
 				function didOpenRemoteNotificationCallBack (jsonData) {
 					if(jsonData.notification.payload.additionalData.chat){

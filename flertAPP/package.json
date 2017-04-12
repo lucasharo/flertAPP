@@ -22,7 +22,6 @@
     "ionic-plugin-keyboard",
 	"cordova-plugin-admobpro",
 	"cordova-plugin-camera",
-	"cordova-sqlite-storage",
 	"cordova-plugin-splashscreen",
 	"cordova-plugins-imagecropresizer",
 	"cordova-plugin-facebook4",
