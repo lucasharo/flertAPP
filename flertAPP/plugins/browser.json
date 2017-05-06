@@ -44,6 +44,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.flertapp"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.flertapp"
         }
     },
     "dependent_plugins": {

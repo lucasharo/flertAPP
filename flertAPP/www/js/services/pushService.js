@@ -42,17 +42,21 @@ app.service('PushService', function($rootScope) {
 				setConfiguracao();
 			});
 		},
-        novaConversa: function(mensagem, userId) {
-			window.plugins.OneSignal.postNotification({ headings: {en: 'Você tem um novo Flert ;)'}, contents: {en: mensagem}, data: {chat: mensagem.usuarioId}, include_player_ids: [userId], android_led_color: '886aea'});		
+		novaConversa: function (mensagem, userId) {
+            if(!dev)
+			    window.plugins.OneSignal.postNotification({ headings: {en: 'Você tem um novo Flert ;)'}, contents: {en: mensagem}, data: {chat: mensagem.usuarioId}, include_player_ids: [userId], android_led_color: '886aea'});		
         },
         aceitaConversa: function(mensagem, userId) {  			
-			window.plugins.OneSignal.postNotification({ headings: {en: 'Seu Flert respondeu a mensagem'}, contents: {en: mensagem}, data: {chat: mensagem.usuarioId}, include_player_ids: [userId], android_led_color: '886aea'});
+            if (!dev)
+                window.plugins.OneSignal.postNotification({ headings: { en: 'Seu Flert respondeu a mensagem' }, contents: { en: mensagem }, data: { chat: mensagem.usuarioId }, include_player_ids: [userId], android_led_color: '886aea' });
         },
 		addTopic: function(topic){
-			window.FirebasePlugin.subscribe(topic);
+		    if (!dev)
+		        window.FirebasePlugin.subscribe(topic);
 		},
 		removeTopic: function(topic){
-			window.FirebasePlugin.unsubscribe(topic);
+			if(!dev)
+			    window.FirebasePlugin.unsubscribe(topic);
 		}
     }
 })
