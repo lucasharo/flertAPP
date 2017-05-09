@@ -23,13 +23,17 @@ var app = angular.module('app', [
   'ion-floating-menu'
 ])
 
-.run(function($ionicPlatform, $rootScope, $state, $ionicHistory, $timeout, $location, PushService, UsuarioFactory, ChatService, FirebaseFactory) {
+.run(function($ionicPlatform, $rootScope, $state, $ionicHistory, $timeout, $location, PushService, UsuarioFactory, ChatService, FirebaseFactory, $cordovaDevice) {
 	$ionicPlatform.ready(function() {
 		if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
 		  cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 		  cordova.plugins.Keyboard.disableScroll(true);
 		  $ionicConfigProvider.scrolling.jsScrolling(false);
 		}
+		
+		/*if(device && device.platform != 'browser'){
+			dev = false;
+		}*/
 	
 		$rootScope.location = $location;
 	
