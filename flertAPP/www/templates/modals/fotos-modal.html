@@ -1,0 +1,36 @@
+<ion-modal-view style="background-color: rgba(0, 0, 0, 0.8)">
+    <ion-content scroll="false" style="background-color: rgba(0, 0, 0, 0.7);">
+        <div style="height: 44px; width: 100%; padding-top: 10px; padding-left: 10px" class="bg-gradient">
+            <button class="button-clear right" ng-click="fotosModal.hide()"><i class="ion-close" style="font-size: 20px; color: #fff"></i></button>
+        </div>
+        <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)" class="bottom-60">
+            <ion-slide ng-repeat="foto in fotos" style="background-color: rgba(0, 0, 0, 0); padding-top: 0px;" class="bottom-60">
+                <ion-scroll class="scroll-comentarios bottom-60" style="background-color: rgba(0, 0, 0, 0);">
+                    <img ng-src="{{foto.src}}" style="width: 100%">
+                    <div ng-show="foto.comentarios.length === 0" class="royal">
+                        <div class="log pad2 royal">N&atilde;o existem coment&aacute;rios</div>
+                    </div>
+                    <div class="list padding-bottom-120" scroll="true">
+                        <ion-item class="item-avatar comentario" style="background-color: rgba(0, 0, 0, 0.1); border: none" ng-repeat="comentario in foto.comentarios">
+                            <img ng-src="{{comentario.img}}" on-touch="chat(comentario.usuarioId) ? fotosModal.hide() : fotosModal.show()" />
+                            <h4 on-touch="chat(comentario.usuarioId) ? fotosModal.hide() : fotosModal.show()">{{comentario.nome}}</h4>
+                            <span class="item-note">
+                                {{comentario.dtComentario | date:'dd/MM/yyyy HH:mm'}}
+                                <i class="ion-close" on-touch="removeComentario($index, indexFoto)" ng-show="comentario.usuarioId == usuario.id || usuario.id == usuarioPerfil.id"></i>
+                            </span>
+                            <p>{{comentario.comentario}}</p>
+                        </ion-item>
+                    </div>
+                </ion-scroll>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
+    <form name="formComentariosFoto" id="formComentariosFoto" ng-submit="comentario = enviaComentario(comentario, indexFoto);" class="bottommsg" novalidate>
+        <div class="list" style="background: transparent">
+            <div class="item item-input-inset" style="padding: 5px 10px 5px 10px; background: transparent; border: none">
+                <textarea class="" style="width: 100%; padding-top: 20px; color: #fff; background-color: transparent" placeholder="Deixe seu coment&aacute;rio..." ng-model="comentario" id="txtComentario" name="txtComentario" required></textarea>
+                <button ng-show="formComentariosFoto.$valid" class="button-clear waves-effect waves-light" type="submit" id="btnEnviar"><i class="ion-ios-paperplane royal" style="font-size: 30px"></i></button>
+            </div>
+        </div>
+    </form>
+</ion-modal-view>

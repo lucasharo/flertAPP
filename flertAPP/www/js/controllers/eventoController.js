@@ -1,4 +1,4 @@
-app.controller('EventoController', function ($scope, $state, $stateParams, $ionicScrollDelegate, $ionicHistory, $rootScope, $timeout, $filter, UsuariosService, EmpresasFactory, UsuarioFactory, LoadService, ComentariosService, $ionicModal, ChatService, $ionicActionSheet, $firebaseArray, $firebaseStorage, FirebaseFactory, PushService, EventosService, UsuariosFactory, ionicDatePicker, ionicTimePicker, ImagemService, EventosService) {
+app.controller('EventoController', function ($scope, $state, $stateParams, $ionicScrollDelegate, $ionicSlideBoxDelegate, $ionicHistory, $rootScope, $timeout, $filter, UsuariosService, EmpresasFactory, UsuarioFactory, LoadService, ComentariosService, $ionicModal, ChatService, $ionicActionSheet, $firebaseArray, $firebaseStorage, FirebaseFactory, PushService, EventosService, UsuariosFactory, ionicDatePicker, ionicTimePicker, ImagemService, EventosService) {
 	$scope.init = function (){
 		$rootScope.refreshComplete();
 
@@ -22,7 +22,23 @@ app.controller('EventoController', function ($scope, $state, $stateParams, $ioni
 		}).then(function (modal) {
 			$scope.eventoModal = modal;
 		});
+
+		$ionicModal.fromTemplateUrl('templates/modals/fotos-modal.html', {
+		    scope: $scope
+		}).then(function (modal) {
+		    $scope.fotosModal = modal;
+		});
 		
+		$scope.abrirImagemModal = function (index) {
+		    $ionicSlideBoxDelegate.slide(index);
+
+		    $scope.indexFoto = index;
+
+		    $scope.fotosModal.show();
+
+		    $ionicScrollDelegate.scrollTop();
+		}
+
 		$scope.removeEvento = function(evento) {
 			if($scope.isAdm){
 				var options = {
@@ -127,40 +143,48 @@ app.controller('EventoController', function ($scope, $state, $stateParams, $ioni
 			
 			$scope.modal.show();
 		}
-		
-		$scope.enviaComentario = function(comentario){
-			if (comentario) {                
-				var comentarioJson = {
-					comentario: comentario,
-					dtComentario: firebase.database.ServerValue.TIMESTAMP,
-					usuarioId: $scope.usuario.id,
-					nome: $scope.usuario.nome,
-					img: $scope.usuario.img.thumb
-				}
-				
-				$scope.comentarios.$add(comentarioJson);
-				
-				$ionicScrollDelegate.scrollBottom();
-				
-				return "";
-			} else {
-				return comentario;
-			}
+
+		$scope.enviaComentario = function (comentario, indexFoto) {
+		    if (comentario) {
+		        var comentarioJson = {
+		            comentario: comentario,
+		            dtComentario: firebase.database.ServerValue.TIMESTAMP,
+		            usuarioId: $rootScope.usuario.id,
+		            nome: $rootScope.usuario.nome,
+		            img: $rootScope.usuario.img.thumb
+		        }
+
+		        var comentarios = $firebaseArray(FirebaseFactory.ref().child('fotos-evento').child($stateParams.eventoId).child($scope.fotos[indexFoto].$id).child('comentarios'));
+
+		        comentarios.$loaded().then(function () {
+		            comentarios.$add(comentarioJson);
+
+		            $ionicScrollDelegate.scrollBottom();
+		        });
+
+		        return "";
+		    } else {
+		        return comentario;
+		    }
 		}
 		
-		$scope.removeComentario = function (comentario) {		
-			var options = {
-				buttons: [
-					{ text: '<a class="item-icon-left assertive" href="#"><i class="icon ion-close"></i>Remover</a>' }
-				],
-				buttonClicked: function () {
-					$scope.comentarios.$remove(comentario);
-				
-					return true;
-				}
-			}
-			
-			$ionicActionSheet.show(options);
+		$scope.removeComentario = function (indexComentario, indexFoto) {
+		    var options = {
+		        buttons: [
+                    { text: '<a class="item-icon-left assertive font-bold text-u-c" href="#"><i class="icon ion-close"></i>Remover</a>' }
+		        ],
+		        buttonClicked: function () {
+		            var comentarios = $firebaseArray(FirebaseFactory.ref().child('fotos-evento').child($stateParams.eventoId).child($scope.fotos[indexFoto].$id).child('comentarios'));
+
+		            comentarios.$loaded().then(function () {
+		                comentarios.$remove(indexComentario);
+		            });
+
+		            return true;
+		        }
+		    }
+
+		    $ionicActionSheet.show(options);
 		}
 		
 		$scope.curtirDescurtir = function(empresaId){
@@ -200,8 +224,17 @@ app.controller('EventoController', function ($scope, $state, $stateParams, $ioni
 				//}
 				
 				$scope.ultimosEventos = EventosService.getUltimosEventos($stateParams.empresaId);
-			
-				$scope.fotos = EventosService.getFotos($stateParams.eventoId);
+
+                EventosService.getFotos($stateParams.eventoId, function (fotos) {
+                    $scope.fotos = fotos;
+
+                    $scope.fotos.$watch(function () {
+                        $ionicSlideBoxDelegate.update();
+                    });
+
+                    $ionicSlideBoxDelegate.update();
+                });
+
 			
 				LoadService.hide();
 			});

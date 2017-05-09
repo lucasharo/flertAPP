@@ -11,18 +11,7 @@
 					<img preload-image ng-src="{{usuarioPerfil.img.src}}" default-image="img/no-image.png" class="w-full r-3x">					
 				</div>
 			</div>
-			<div class="row no-padder" ng-repeat="foto in fotos" ng-if="$index % 3 === 0">
-				<div class="col col-33" ng-if="$index < fotos.length" on-hold="removeFoto($index)">
-					<img preload-image ng-src="{{fotos[$index].thumb}}" default-image="img/no-image.png" class="w-full r-3x">
-				</div>
-				<div class="col col-33" ng-if="$index + 1 < fotos.length" on-hold="removeFoto($index + 1)">
-					<img preload-image ng-src="{{fotos[$index + 1].thumb}}" default-image="img/no-image.png" class="w-full r-3x">
-				</div>
-				<div class="col col-33" ng-if="$index + 2 < fotos.length" on-hold="removeFoto($index + 2)">
-					<img preload-image ng-src="{{fotos[$index + 2].thumb}}" default-image="img/no-image.png" class="w-full r-3x">
-				</div>
-			</div>
-		
+            		
 			<div class="text-muted text-md b-b b-light">
 				<div class="m-b-md font-bold text-u-c royal padding-top-15">Nome</div>
 				<div class="text-md">

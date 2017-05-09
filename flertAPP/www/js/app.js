@@ -19,7 +19,8 @@ var app = angular.module('app', [
   'ui.utils.masks',
   'ion-cool-profile',
   'ionic-datepicker',
-  'ionic-timepicker'
+  'ionic-timepicker',
+  'ion-floating-menu'
 ])
 
 .run(function($ionicPlatform, $rootScope, $state, $ionicHistory, $timeout, $location, PushService, UsuarioFactory, ChatService, FirebaseFactory) {

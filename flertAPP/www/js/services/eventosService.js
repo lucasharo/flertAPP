@@ -21,10 +21,12 @@ app.service("EventosService", function ($firebaseArray, $firebaseObject, Firebas
 			
 			return eventos;
         },
-		getFotos: function (eventoId) {
-        	var fotos = $firebaseArray(FirebaseFactory.ref().child('fotos-evento').orderByChild('eventoId').equalTo(eventoId));
-			
-			return fotos;
+		getFotos: function (eventoId, callback) {
+		    var fotos = $firebaseArray(FirebaseFactory.ref().child('fotos-evento').child(eventoId));
+
+        	fotos.$loaded().then(function () {
+        	    callback(fotos);
+        	});
         }
     }
 });

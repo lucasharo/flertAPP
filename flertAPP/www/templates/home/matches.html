@@ -1,45 +1,42 @@
-<ion-view title="Tinder" id="matches-page">
-  <ion-nav-buttons side="left">
-    <button class="button button-grey button-clear" nav-direction="back" ui-sref="home.explore">
-      <span class="dot-notification"></span>
-      <i class="icon ion-android-happy"></i>
-    </button>
-  </ion-nav-buttons>
-
-  <ion-nav-title>
-    <button class="button button-clear button-royal m-t-xs">
-      <i class="icon ion-chatbubbles"></i>
-    </button>
-  </ion-nav-title>
-
-  <div class="bar bar-subheader item-input-inset bar-no-border bg-dark">
-    <label class="item-input-wrapper">
-      <i class="icon ion-search placeholder-icon"></i>
-      <input type="search" ng-model="search.usuario.nome" placeholder="Encontrar Contato...">
-    </label>
-  </div>
-
-  <ion-content class="has-subheader bg-grey">
-    <div class="wrapper">
-		<div class="m-b-md font-bold text-u-c royal">Novos Flerts <span class="rounded-matches text-center rounded color-white royal-bg">{{novosContatos.length}}</span></div>
-		<ion-scroll direction="x" class="scroll-horizontal wrapper-xs b-b b-light">
-			<div class="text-center scroll-item m-r-sm pos-rlt" ng-repeat="contato in novosContatos track by $index" nav-direction="forward" ng-click="goToChat(contato.usuario.id)">
-			  <img ng-src="{{contato.usuario.img.thumb}}" preload-image default-image="img/anonimo.png" alt="" class="thumb-md rounded" checkImage>
-			  <div class="font-bold color-white">{{contato.usuario.nome | split: ' ' : 0}}</div>
-			  <span class="dot-notification on-avatar" ng-show="true"></span>
-			</div>
-		</ion-scroll>
+<ion-view title="Flerts" id="matches-page">
+    <ion-nav-buttons side="left">
+        <button class="button button-grey button-clear" nav-direction="back" ui-sref="home.explore">
+            <span class="dot-notification"></span>
+            <i class="icon ion-android-happy"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <button class="button button-clear button-royal m-t-xs">
+            <i class="icon ion-chatbubbles"></i>
+        </button>
+    </ion-nav-title>
+    <div class="bar bar-subheader item-input-inset bar-no-border bg-dark">
+        <label class="item-input-wrapper">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" ng-model="search.usuario.nome" placeholder="Encontrar Contato...">
+        </label>
     </div>
-		<div class="wrapper font-bold text-u-c royal">Flerts</div>
-		<div style="padding-right: 10px">
-			<div class="clear m-b-sm" ng-repeat="contato in contatos | filter: search" nav-direction="forward" ng-click="goToChat(contato.usuario.id)">
-			  <img ng-src="{{contato.usuario.img.thumb}}" preload-image default-image="img/anonimo.png" alt="" class="thumb-md rounded pull-left m-l m-r-md">
-			  <div class="text-lg b-b b-light clear padder-v">
-				<div class="text-c color-white">{{contato.usuario.nome}} oi</div>
-				<p class="text-sm  color-light-grey" ng-if="contato.ultimaMensagem.tipo == 1">{{contato.ultimaMensagem.mensagem}}</p>
-				<i class="icon ion-image color-light-grey" ng-if="contato.ultimaMensagem.tipo == 2"></i>
-			  </div>
-			</div>
-		</div>
-  </ion-content>
+    <ion-content class="has-subheader bg-grey">
+        <div class="wrapper">
+            <div class="m-b-md font-bold text-u-c royal">Novos Flerts <span class="rounded-matches text-center rounded color-white royal-bg">{{novosContatos.length}}</span></div>
+            <ion-scroll direction="x" class="scroll-horizontal wrapper-xs b-b b-light">
+                <div class="text-center scroll-item m-r-sm pos-rlt" ng-repeat="contato in novosContatos track by $index" nav-direction="forward" ng-click="goToChat(contato.usuario.id)">
+                    <img ng-src="{{contato.usuario.img.thumb}}" preload-image default-image="img/anonimo.png" alt="" class="thumb-md rounded" checkImage>
+                    <div class="font-bold color-white">{{contato.usuario.nome | split: ' ' : 0}}</div>
+                    <span class="dot-notification on-avatar" ng-show="true"></span>
+                </div>
+            </ion-scroll>
+        </div>
+        <div class="wrapper font-bold text-u-c royal">Flerts</div>
+        <div style="padding-right: 10px">
+            <div class="clear m-b-sm" ng-repeat="contato in contatos | filter: search" nav-direction="forward" ng-click="goToChat(contato.usuario.id)">
+                <img ng-src="{{contato.usuario.img.thumb}}" preload-image default-image="img/anonimo.png" alt="" class="thumb-md rounded pull-left m-l m-r-md">
+                <div class="text-lg b-b b-light clear padder-v">
+                    <div class="text-c color-white">{{contato.usuario.nome}} oi</div>
+                    <p class="text-sm  color-light-grey" ng-if="contato.ultimaMensagem.tipo == 1">{{contato.ultimaMensagem.mensagem}}</p>
+                    <i class="icon ion-image color-light-grey" ng-if="contato.ultimaMensagem.tipo == 2"></i>
+                </div>
+            </div>
+        </div>
+    </ion-content>
 </ion-view>
